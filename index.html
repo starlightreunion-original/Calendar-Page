@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starlight Reunion — Community Events</title>
+
+  <!-- Open Graph tags for Discord preview -->
+  <meta property="og:title" content="Starlight Reunion — Community Events" />
+  <meta property="og:description" content="View and submit community events for Starlight Reunion" />
+  <meta property="og:image" content="SR logo.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Starlight Reunion — Community Events" />
+  <meta name="twitter:description" content="View and submit community events for Starlight Reunion" />
+  <meta name="twitter:image" content="SR logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --grey: #3B3B3B;
+      --red: #CF2E2E;
+      --off-white: #E8E8E8;
+      --dim: #1a1a1a;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.35;
+    }
+
+    /* Top accent line */
+    .accent-line {
+      height: 3px;
+      background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
+      width: 100%;
+    }
+
+    header {
+      padding: 2.5rem 3rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--grey);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .logo {
+      height: 52px;
+      width: auto;
+      filter: brightness(1);
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .site-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 0.2rem;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    .submit-btn:hover {
+      background: #e03535;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    main {
+      padding: 2.5rem 3rem 3rem;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    .calendar-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .calendar-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      color: #666;
+    }
+
+    .legend {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-official { background-color: #B1440E; }
+    .dot-community { background-color: #1B887A; }
+
+    .calendar-wrapper {
+      position: relative;
+      width: 100%;
+      background: var(--dim);
+      border: 1px solid var(--grey);
+      overflow: hidden;
+    }
+
+    .calendar-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #B1440E 0%, #1B887A 100%);
+      z-index: 1;
+    }
+
+    .calendar-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 650px;
+      border: none;
+      filter: invert(1) hue-rotate(180deg) brightness(0.88) contrast(0.95);
+    }
+
+    footer {
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--grey);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .footer-text {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .footer-text a {
+      color: #777;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-text a:hover {
+      color: var(--white);
+    }
+
+    .footer-submit {
+      display: none;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+
+      main {
+        padding: 1.5rem;
+      }
+
+      footer {
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .footer-submit {
+        display: inline-flex;
+      }
+
+      .calendar-wrapper iframe {
+        height: 500px;
+      }
+
+      .site-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="accent-line"></div>
+
+  <header>
+    <div class="header-left">
+      <img src="SR logo.jpg" alt="Starlight Reunion" class="logo" />
+      <div class="header-text">
+        <span class="site-title">Starlight Reunion</span>
+        <span class="site-subtitle">Community Events Calendar</span>
+      </div>
+    </div>
+    <a href="https://forms.gle/h5DAoemYnExxr1br5" target="_blank" rel="noopener" class="submit-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Submit an Event
+    </a>
+  </header>
+
+  <main>
+    <div class="calendar-header">
+      <span class="calendar-label">Upcoming Events</span>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot dot-official"></div>
+        <span>Starlight Reunion Official</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot dot-community"></div>
+        <span>Community Events</span>
+      </div>
+    </div>
+
+    <div class="calendar-wrapper">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=starlightreunion@gmail.com&color=%23B1440E&src=516c3fa250c08d4a12c911353047bf373ff6e37bf1b39a8c193da9ae59df53cd@group.calendar.google.com&color=%231B887A&ctz=America%2FDenver&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0"
+        title="Starlight Reunion Events Calendar"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-text">© Starlight Reunion — <a href="https://starlightreunion.org" target="_blank">starlightreunion.org</a></span>
+    <span class="footer-text">All times Mountain</span>
+  </footer>
+
+</body>
+</html>
