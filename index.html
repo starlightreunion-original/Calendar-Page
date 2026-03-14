@@ -8,13 +8,13 @@
   <!-- Open Graph tags for Discord preview -->
   <meta property="og:title" content="Starlight Reunion — Community Events" />
   <meta property="og:description" content="View and submit community events for Starlight Reunion" />
-  <meta property="og:image" content="https://starlightreunion-original.github.io/Calendar-Page/" />
+  <meta property="og:image" content="SR logo.jpg" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://starlightreunion-original.github.io/Calendar-Page/" />
+  <meta property="og:url" content="" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Starlight Reunion — Community Events" />
   <meta name="twitter:description" content="View and submit community events for Starlight Reunion" />
-  <meta name="twitter:image" content="https://starlightreunion-original.github.io/Calendar-Page/" />
+  <meta name="twitter:image" content="SR logo.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -109,35 +109,6 @@
       margin-top: 0.2rem;
     }
 
-    .submit-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--red);
-      color: var(--white);
-      text-decoration: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.7rem 1.4rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    }
-
-    .submit-btn:hover {
-      background: #e03535;
-      transform: translateY(-1px);
-    }
-
-    .submit-btn svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
-    }
 
     main {
       padding: 2.5rem 3rem 3rem;
@@ -210,35 +181,6 @@
       filter: invert(1) hue-rotate(180deg) brightness(0.88) contrast(0.95);
     }
 
-    footer {
-      padding: 1.5rem 3rem;
-      border-top: 1px solid var(--grey);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-
-    .footer-text {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #555;
-    }
-
-    .footer-text a {
-      color: #777;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-text a:hover {
-      color: var(--white);
-    }
-
-    .footer-submit {
-      display: none;
-    }
 
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-12px); }
@@ -262,16 +204,6 @@
         padding: 1.5rem;
       }
 
-      footer {
-        padding: 1.25rem 1.5rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: flex-start;
-      }
-
-      .footer-submit {
-        display: inline-flex;
-      }
 
       .calendar-wrapper iframe {
         height: 500px;
@@ -295,12 +227,6 @@
         <span class="site-subtitle">Community Events Calendar</span>
       </div>
     </div>
-    <a href="https://forms.gle/h5DAoemYnExxr1br5" target="_blank" rel="noopener" class="submit-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-      </svg>
-      Submit an Event
-    </a>
   </header>
 
   <main>
@@ -328,10 +254,7 @@
     </div>
   </main>
 
-  <footer>
-    <span class="footer-text">© Starlight Reunion — <a href="https://starlightreunion.org" target="_blank">starlightreunion.org</a></span>
-    <span class="footer-text">All times Mountain</span>
-  </footer>
+
 
 </body>
 </html>
