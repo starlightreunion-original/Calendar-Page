@@ -254,7 +254,17 @@
     </div>
   </main>
 
+  <script>
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
 
+    function sendHeight() {
+      window.parent.postMessage(
+        { type: 'iframeHeight', height: document.body.scrollHeight },
+        '*'
+      );
+    }
+  </script>
 
 </body>
 </html>
